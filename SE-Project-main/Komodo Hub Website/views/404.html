@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}404 - Page Not Found{% endblock %}
+
+{% block content %}
+<div class="error-page" style="text-align: center; padding: 50px;">
+  <h1 style="font-size: 3rem; color: #1a3c1f;">404</h1>
+  <h2 style="font-size: 2rem; margin-bottom: 20px;">Page Not Found</h2>
+  <p style="font-size: 1.2rem; margin-bottom: 30px;">The page you are looking for might have been removed or is temporarily unavailable.</p>
+  <a href="{{ url_for('index') }}" class="cta-button" style="padding: 10px 20px; background-color: #1a3c1f; color: #fff; text-decoration: none; border-radius: 5px;">Return Home</a>
+</div>
+{% endblock %}

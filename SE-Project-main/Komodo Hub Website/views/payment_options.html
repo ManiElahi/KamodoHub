@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Complete Your Donation{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/payment_options.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="checkout-container">
+  <!-- Left Column: Donation Summary -->
+  <div class="checkout-summary">
+    <h2>Donation Summary</h2>
+    
+    <div class="summary-item">
+      <div class="item-details">
+        <p class="item-name">Komodo Hub - Conservation Support</p>
+        <p class="item-sub">One-time donation</p>
+      </div>
+      <p class="item-price">£{{ donation.get('amount', '0') }}</p>
+    </div>
+    
+    <div class="summary-total">
+      <p>Total Donation</p>
+      <p class="total-amount">£{{ donation.get('amount', '0') }}</p>
+    </div>
+    
+    <p class="footer-text">Thank you for supporting Komodo Hub Animal Conservation!</p>
+  </div>
+
+  <!-- Right Column: Payment Methods -->
+  <div class="checkout-form">
+    <!-- Apple Pay Option -->
+    <button class="apple-pay-btn">
+      <span class="apple-pay-text">Apple Pay</span>
+    </button>
+
+    <!-- Updated: Pay with PayPal Option -->
+    <a href="https://www.paypal.com" target="_blank" class="paypal-btn">
+      <span class="paypal-text">Pay with PayPal</span>
+    </a>
+
+    <!-- Divider -->
+    <div class="or-divider">
+      <span>Or pay with card</span>
+    </div>
+
+    <!-- Card Payment Form -->
+    <form action="{{ url_for('card_payment') }}" method="POST" class="card-payment-form">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com">
+      
+      <label for="cardNumber">Card Information</label>
+      <div class="card-info-group">
+        <input type="text" id="cardNumber" name="cardNumber" required placeholder="1234 1234 1234 1234">
+        <input type="text" id="expiry" name="expiry" required placeholder="MM/YY">
+        <input type="text" id="cvc" name="cvc" required placeholder="CVC">
+      </div>
+      
+      <label for="cardName">Name on Card</label>
+      <input type="text" id="cardName" name="cardName" required placeholder="Your Name">
+
+      <label for="country">Country or Region</label>
+      <input type="text" id="country" name="country" required placeholder="United Kingdom">
+
+      <label for="zip">Postcode</label>
+      <input type="text" id="zip" name="zip" required placeholder="SW1A 1AA">
+
+      <button type="submit" class="pay-button">Pay</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,174 @@
+/* ===================== ENDANGERED_SPECIES.CSS ===================== */
+
+/* ----- Global Reset & Base ----- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* ----- Page Container ----- */
+.species-page-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* ----- Header Section ----- */
+.species-page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.species-page-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1a3c1f;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.filter-btn {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #1a3c1f;
+}
+
+.filter-btn:hover {
+  background-color: #eee;
+}
+
+.cta-button {
+  background-color: #1a3c1f;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #145215;
+  transform: translateY(-2px);
+}
+
+/* ----- Species Listings ----- */
+.species-listings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Horizontal Species Card */
+.species-card {
+  display: flex;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+
+.species-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Image Section */
+.species-card-image {
+  flex: 0 0 220px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.species-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content Section */
+.species-card-content {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.species-date {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.species-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 5px 0;
+}
+
+.species-status {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.species-uploader {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.species-description {
+  font-size: 0.95rem;
+  color: #444;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+/* ----- Responsive Design ----- */
+@media (max-width: 768px) {
+  .species-card {
+    flex-direction: column;
+  }
+  .species-card-image {
+    width: 100%;
+    height: 200px;
+  }
+  .species-card-content {
+    padding: 10px;
+  }
+  .species-page-header h1 {
+    font-size: 1.6rem;
+  }
+  .filter-btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+  .cta-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}

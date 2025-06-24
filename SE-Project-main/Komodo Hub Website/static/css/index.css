@@ -1,0 +1,299 @@
+/* ===================== GLOBAL RESET & BASE ===================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* --------------------- CONTAINER --------------------- */
+.container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===================== HERO SECTION ===================== */
+.hero {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.6)),
+    url('../images/lizard.jpeg') center/cover no-repeat fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  padding: 2rem;
+  position: relative;
+}
+
+.hero-content {
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero-content h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+/* CTA Button (Global) */
+.cta-button {
+  display: inline-block;
+  background-color: #1a3c1f;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #145215;
+  transform: translateY(-3px);
+}
+
+/* ===================== ENDANGERED SPECIES SECTION ===================== */
+.endangered-species {
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: #1a3c1f;
+  margin-bottom: 0.5rem;
+}
+
+.section-header p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.species-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.species-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.species-card:hover {
+  transform: translateY(-8px);
+}
+
+.card-image img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.card-content h3 {
+  font-size: 1.4rem;
+  color: #1a3c1f;
+  margin-bottom: 0.7rem;
+}
+
+.species-status {
+  font-weight: 600;
+  color: #e74c3c;
+  margin-bottom: 1rem;
+}
+
+.species-description {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* ===================== MOTIVATIONAL QUOTES SECTION ===================== */
+.motivational-quotes {
+  padding: 5rem 1rem;
+  background-color: #1a3c1f;
+  color: #fff;
+  text-align: center;
+}
+
+.quotes-carousel {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quote-slide {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  position: absolute;
+  width: 100%;
+  padding: 1rem;
+}
+
+.quote-slide.active {
+  opacity: 1;
+  position: relative;
+}
+
+.quote-slide .quote {
+  font-size: 1.4rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.author {
+  font-weight: bold;
+  color: #a3d8a9;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+  transition: color 0.3s ease;
+}
+
+.carousel-btn:hover {
+  color: #a3d8a9;
+}
+
+.carousel-btn.left {
+  left: -50px;
+}
+
+.carousel-btn.right {
+  right: -50px;
+}
+
+/* ===================== FUN & GAMES SECTION ===================== */
+.fun-games {
+  padding: 5rem 1rem;
+  text-align: center;
+  background-color: #f8f9fa;
+}
+
+.fun-games .section-header {
+  margin-bottom: 2rem;
+}
+
+.game-teaser {
+  background-color: #fff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.game-teaser p {
+  margin-bottom: 1.5rem;
+}
+
+/* ===================== RESPONSIVE MEDIA QUERIES ===================== */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 1rem;
+  }
+
+  .hero-content {
+    padding: 2rem;
+  }
+
+  .carousel-btn.left,
+  .carousel-btn.right {
+    left: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .species-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel-btn {
+    position: static;
+    margin: 0 10px;
+  }
+
+  .quotes-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .quote-slide {
+    position: static;
+    opacity: 1;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 1.5rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .quote-slide .quote {
+    font-size: 1.2rem;
+  }
+
+  .game-teaser {
+    padding: 1.5rem;
+  }
+
+  .cta-button {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Komodo Hub{% endblock %}</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  {% block extra_css %}{% endblock %}
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="{% block body_class %}base-page{% endblock %}">
+
+  <!-- ======= NAVBAR ======= -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="{{ url_for('index') }}">
+          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Komodo Hub Logo">
+        </a>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About Us</a></li>
+        <li><a href="{{ url_for('endangered_species') }}">Endangered Species</a></li>
+        <li><a href="{{ url_for('word_search_game') }}">Word Game</a></li>
+        <li><a href="{{ url_for('payments') }}">Donate</a></li>
+      </ul>
+
+      <div class="nav-auth">
+        {% if 'user_id' in session %}
+        <div class="user-dropdown" id="userDropdown">
+          <button class="user-btn" id="userDropdownBtn">
+            Hi, {{ session['user_name'] }} <i class="fas fa-caret-down"></i>
+          </button>
+          <ul class="dropdown-menu" id="dropdownMenu">
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('messages') }}">Messages</a></li>
+            <li><a href="{{ url_for('notifications') }}">Notifications</a></li>
+            {% if session['role'] == 'admin' %}
+              <li><a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          </ul>
+        </div>
+        {% else %}
+          <a href="{{ url_for('register') }}" class="btn round-btn">Sign Up</a>
+          <a href="{{ url_for('login') }}" class="btn round-btn outline">Sign In</a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+
+  <!-- ======= FLASH MESSAGES ======= -->
+  <div class="flash-messages container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- ======= MAIN CONTENT ======= -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ======= FOOTER ======= -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <h2>Komodo Hub</h2>
+        <p>Empowering conservation through technology and education.</p>
+      </div>
+
+      <div class="footer-links">
+        <ul>
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li><a href="{{ url_for('about') }}">About Us</a></li>
+          <li><a href="{{ url_for('endangered_species') }}">Endangered Species</a></li>
+          <li><a href="{{ url_for('payments') }}">Donate</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-subscribe">
+        <h3>Stay Updated</h3>
+        <p>Subscribe to our newsletter for the latest conservation news.</p>
+        <form action="{{ url_for('subscribe_newsletter') }}" method="POST" class="subscribe-form">
+          <input type="email" name="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer-social">
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Komodo Hub Wildlife Conservation. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ======= JS ======= -->
+  <script>
+    // Dropdown Toggle
+    const userDropdownBtn = document.getElementById('userDropdownBtn');
+    const userDropdown = document.getElementById('userDropdown');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    if(userDropdownBtn && dropdownMenu) {
+      userDropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        userDropdown.classList.toggle('active');
+      });
+      
+      window.addEventListener('click', (e) => {
+        if (!userDropdown.contains(e.target)) {
+          userDropdown.classList.remove('active');
+        }
+      });
+    }
+  </script>
+  <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

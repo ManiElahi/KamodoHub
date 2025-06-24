@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Notifications{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/notifications.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="notifications-container">
+  <!-- Header / Intro -->
+  <div class="notifications-header">
+    <h1>Your Notifications</h1>
+  </div>
+
+  <!-- Controls: Unread button + Search bar -->
+  <div class="notifications-controls">
+    <button class="unread-btn">Unread</button>
+    <div class="search-bar">
+      <input type="text" placeholder="Search Notifications" class="search-input">
+      <button class="search-btn">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Notifications List -->
+  <div class="notifications-list">
+    {% if notifications %}
+      <ul>
+        {% for notification in notifications %}
+        <li class="notification-item {% if not notification['is_read'] %}unread{% endif %}">
+          <div class="notification-info">
+            <p class="notification-snippet">{{ notification['content'] }}</p>
+            <p class="notification-timestamp">{{ notification['timestamp'] }}</p>
+          </div>
+          <!-- Mark as Read or Dismiss Form -->
+          <form method="POST" action="{{ url_for('notifications') }}" class="notification-action-form">
+            <!-- Example: Mark as Read (you can pass ID or handle differently) -->
+            <input type="hidden" name="action" value="mark_as_read">
+            <input type="hidden" name="notification_id" value="{{ notification['id'] }}">
+            <button type="submit" class="mark-read-btn">Mark as Read</button>
+          </form>
+        </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="no-notifications">You have no notifications.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

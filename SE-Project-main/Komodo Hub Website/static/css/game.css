@@ -1,0 +1,225 @@
+/*-------------------------
+    BASE RESET & FONT
+--------------------------*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+  color: #333;
+}
+
+/*-------------------------
+    MAIN GAME CONTAINER
+--------------------------*/
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+.game-section {
+  text-align: center;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f8fdf8;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.game-section h1 {
+  font-size: 2.4rem;
+  color: #1a3c1f;
+  margin-bottom: 15px;
+}
+
+.game-section p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/*-------------------------
+    GAME GRID & CELLS
+--------------------------*/
+#game-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+#word-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 45px);
+  gap: 5px;
+  background-color: #e2eee2;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.cell {
+  width: 45px;
+  height: 45px;
+  background-color: #ffffff;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.cell:hover {
+  transform: scale(1.05);
+  background-color: #d3e7f9;
+}
+
+.cell.selected {
+  background-color: #6ba8ff;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.cell.found {
+  background-color: #43c45e;
+  color: white;
+  font-weight: bold;
+}
+
+/*-------------------------
+    WORD LIST & LEADERBOARD
+--------------------------*/
+#game-info {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  min-width: 200px;
+}
+
+#word-list, #leaderboard {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#word-list h3, #leaderboard h3 {
+  color: #1a3c1f;
+  margin-bottom: 12px;
+}
+
+#word-list ul {
+  list-style: none;
+}
+
+#word-list li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+
+#word-list li.found {
+  text-decoration: line-through;
+  color: #43c45e;
+}
+
+/* Leaderboard Table */
+#leaderboard table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+#leaderboard th, #leaderboard td {
+  padding: 8px;
+  text-align: center;
+}
+
+#leaderboard th {
+  background-color: #1a3c1f;
+  color: white;
+  border-radius: 5px;
+}
+
+#leaderboard td {
+  border-bottom: 1px solid #e1e1e1;
+}
+
+#leaderboard tr:hover td {
+  background-color: #f0f9f2;
+}
+
+/*-------------------------
+    NEW GAME BUTTON
+--------------------------*/
+#new-game {
+  background-color: #1a3c1f;
+  color: #ffffff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-top: 15px;
+}
+
+#new-game:hover {
+  background-color: #145215;
+  transform: translateY(-2px);
+}
+
+/*-------------------------
+    MESSAGE DISPLAY
+--------------------------*/
+#message {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: #1a3c1f;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+#message.show {
+  opacity: 1;
+}
+
+/*-------------------------
+    RESPONSIVE DESIGN
+--------------------------*/
+@media (max-width: 768px) {
+  #game-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #word-grid {
+    grid-template-columns: repeat(8, 40px);
+  }
+
+  .cell {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  #game-info {
+    width: 100%;
+  }
+
+  #leaderboard, #word-list {
+    width: 100%;
+  }
+}

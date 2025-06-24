@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+  <h1>Welcome, {{ session['user_name'] }}!</h1>
+  <p>Your Role: <strong>{{ session['role'] }}</strong></p>
+  <p>Your Points: <strong>{{ points }}</strong></p>
+  <p>Explore Komodo Hub to report sightings, view messages and notifications, or play our word search game!</p>
+  
+  <div class="dashboard-actions">
+    <a href="{{ url_for('report_sighting') }}" class="dashboard-btn">Report a Sighting</a>
+    <a href="{{ url_for('messages') }}" class="dashboard-btn">View Messages</a>
+    <a href="{{ url_for('notifications') }}" class="dashboard-btn">View Notifications</a>
+    <a href="{{ url_for('word_search_game') }}" class="dashboard-btn">Play Word Search Game</a>
+    {% if session['role']|lower == 'admin' %}
+      <a href="{{ url_for('admin_dashboard') }}" class="dashboard-btn admin-btn">Admin Dashboard</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

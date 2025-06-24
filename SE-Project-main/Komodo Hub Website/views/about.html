@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}About Us{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+{% block content %}
+<main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>About Us</h1>
+      <p>Komodo Hub</p>
+      <div class="buttons">
+        <!-- Fixed the broken route here -->
+        <a href="{{ url_for('endangered_species') }}" class="btn light">Learn More</a>
+        <a href="{{ url_for('login') }}" class="btn dark">Sign In</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info Section -->
+  <section class="info-section">
+    <div class="info-container">
+      
+      <!-- Info Box 1: Our Mission -->
+      <div class="info-box">
+        <div class="info-header">
+          <span>Our Mission</span>
+          <button class="toggle-btn" aria-label="Toggle Our Mission">⌄</button>
+        </div>
+        <div class="info-content">
+          <p>
+            Our commitment at KomodoHub involves bringing digital advancement to Indonesian animal conservation. The platform brings together communities and schools with conservation enthusiasts to protect disappearing natural species while building environmental knowledge.
+          </p>
+        </div>
+      </div>
+
+      <!-- Info Box 2: Who We Are -->
+      <div class="info-box">
+        <div class="info-header">
+          <span>Who We Are?</span>
+          <button class="toggle-btn" aria-label="Toggle Who We Are">⌄</button>
+        </div>
+        <div class="info-content">
+          <p>
+            Yayasan Komodo functions as the driver behind KomodoHub under its mission to defend Indonesia's diverse biodiversity. With substantial financial backing and organizational help, we created a digital framework that empowers people and institutions to study, support, and actively engage in species preservation.
+          </p>
+        </div>
+      </div>
+
+      <!-- Info Box 3: What We Do -->
+      <div class="info-box">
+        <div class="info-header">
+          <span>What We Do?</span>
+          <button class="toggle-btn" aria-label="Toggle What We Do">⌄</button>
+        </div>
+        <div class="info-content">
+          <p>
+            <b>Educate & Engage</b> – We offer an extensive knowledge base on Indonesian wildlife and conservation programs tailored for students, teachers, and communities.<br><br>
+            <b>Support Conservation Efforts</b> – Our platform enables users to contribute by reporting wildlife sightings, taking part in conservation initiatives, and sharing research.<br><br>
+            <b>Empower Communities</b> – Local communities and schools are integral to preserving biodiversity, and we provide them with the necessary tools and resources.<br><br>
+            <b>Ensure Digital Security</b> – Protecting user data, especially that of children, is paramount. KomodoHub adheres to strict security and privacy standards to ensure a safe and secure experience.
+          </p>
+        </div>
+      </div>
+
+      <!-- Info Box 4: Join Us -->
+      <div class="info-box">
+        <div class="info-header">
+          <span>Join Us in Making a Difference</span>
+          <button class="toggle-btn" aria-label="Toggle Join Us">⌄</button>
+        </div>
+        <div class="info-content">
+          <p>
+            Conservation is a collective effort. Whether you're an educator, student, researcher, or wildlife enthusiast, you can be a part of KomodoHub and help safeguard Indonesia's precious wildlife for future generations.<br><br>
+            Let’s make a change—<b>one digital step at a time.</b>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/script.js.js') }}"></script>
+{% endblock %}
+{% endblock %}

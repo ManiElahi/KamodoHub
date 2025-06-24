@@ -1,0 +1,126 @@
+
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("../images/Forest.jpg") center/cover no-repeat;
+    position: relative;
+  }
+  
+
+  .register-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+
+  .register-container {
+    position: relative;
+    z-index: 1;
+    width: 500px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+
+  .register-container h1 {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 30px;
+  }
+  
+
+  .register-container form {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  .register-container form label {
+    display: block;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
+  }
+  
+  .register-container form input,
+  .register-container form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: 0.3s;
+    margin-bottom: 20px;
+  }
+  
+  .register-container form input:focus,
+  .register-container form select:focus {
+    border-color: #45a049;
+    box-shadow: 0 0 8px rgba(69, 160, 73, 0.5);
+  }
+
+  .register-container form button {
+    background-color: #2C2C2C;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100%;
+    transition: 0.3s;
+  }
+  
+  .register-container form button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+  
+ 
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .register-container {
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  
+
+  .register-page .flash {
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    background: rgba(255, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .register-container {
+      width: 90%;
+      padding: 15px;
+    }
+  }
+  

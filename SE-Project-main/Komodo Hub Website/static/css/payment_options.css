@@ -1,0 +1,245 @@
+/* ===================== PAYMENT OPTIONS CSS ===================== */
+
+/* Global Reset & Base Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Container for the two-column checkout layout */
+.checkout-container {
+  display: flex;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-size: 1rem;
+}
+
+/* Left Column: Donation Summary */
+.checkout-summary {
+  flex: 1;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.checkout-summary h2 {
+  font-size: 1.8rem;
+  color: #1a3c1f;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.item-sub {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.item-price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a3c1f;
+}
+
+.summary-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+.total-amount {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a3c1f;
+}
+
+.footer-text {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Right Column: Payment Methods */
+.checkout-form {
+  flex: 1;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Payment Method Buttons */
+
+/* Apple Pay Button */
+.apple-pay-btn {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.apple-pay-btn:hover {
+  background-color: #333;
+}
+
+/* PayPal Button */
+.paypal-btn {
+  display: inline-block;
+  width: 100%;
+  background-color: #003087;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.paypal-btn:hover {
+  background-color: #00296b;
+}
+
+/* Divider */
+.or-divider {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 0.9rem;
+  color: #888;
+  position: relative;
+}
+
+.or-divider span {
+  background-color: #ffffff;
+  padding: 0 10px;
+}
+
+/* Card Payment Form */
+.card-payment-form {
+  text-align: left;
+}
+
+.card-payment-form label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+}
+
+.card-payment-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  transition: border 0.3s ease;
+}
+
+.card-payment-form input:focus {
+  border-color: #1a3c1f;
+  outline: none;
+}
+
+/* Group for card details (number, expiry, cvc) */
+.card-info-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.card-info-group input {
+  flex: 1;
+}
+
+/* Enhanced Pay Button for Card Payment */
+.pay-button {
+  display: inline-block;
+  width: 100%;
+  background: linear-gradient(135deg, #1a3c1f, #145215);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.pay-button:hover {
+  background: linear-gradient(135deg, #145215, #1a3c1f);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .checkout-container {
+    flex-direction: column;
+  }
+  
+  .checkout-summary, .checkout-form {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .card-info-group {
+    flex-direction: column;
+  }
+}

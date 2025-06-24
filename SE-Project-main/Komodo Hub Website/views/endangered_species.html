@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Endangered Species Overview{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/endangered_species.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="species-page-container">
+  <!-- Header Section -->
+  <header class="species-page-header">
+    <h1>{{ static_species|length }}+ Endangered Species</h1>
+    <div class="filters">
+      <button class="filter-btn">Critically Endangered</button>
+      <button class="filter-btn">Endangered</button>
+      <button class="filter-btn">All Species</button>
+    </div>
+    <a href="{{ url_for('report_sighting') }}" class="cta-button">Report Endangered Species</a>
+  </header>
+
+  <!-- Species Listings -->
+  <div class="species-listings">
+    {% for species in static_species %}
+    <div class="species-card">
+      <div class="species-card-image">
+        <img src="{{ species.image }}" alt="{{ species.name }}">
+      </div>
+      <div class="species-card-content">
+        {% if species.timestamp %}
+          <p class="species-date">{{ species.timestamp }}</p>
+        {% endif %}
+        <h2 class="species-name">{{ species.name }}</h2>
+        {% if species.status %}
+          <p class="species-status"><strong>Status:</strong> {{ species.status }}</p>
+        {% endif %}
+        <p class="species-uploader">
+          Uploaded by: {% if species.uploader %}{{ species.uploader }}{% else %}Community{% endif %}
+        </p>
+        <p class="species-description">{{ species.description }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

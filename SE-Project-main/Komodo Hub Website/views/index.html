@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Komodo Hub{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>KOMODO HUB</h1>
+    <p>Join us in protecting Indonesia's endangered species and make a real difference.</p>
+    <a href="{{ url_for('report_sighting') }}" class="cta-button">Report Endangered Species</a>
+  </div>
+</section>
+
+<!-- Endangered Species Overview Section -->
+<section class="endangered-species container">
+  <header class="section-header">
+    <h2>Endangered Species Overview</h2>
+    <p>Learn about species we aim to protect.</p>
+    <a href="{{ url_for('endangered_species') }}" class="cta-button">View All Endangered Species</a>
+  </header>
+  {% if static_species %}
+    <div class="species-grid">
+      {% for species in static_species %}
+        <div class="species-card">
+          <div class="card-image">
+            <img src="{{ species.image }}" alt="{{ species.name }}">
+          </div>
+          <div class="card-content">
+            <h3 class="species-name">{{ species.name }}</h3>
+            {% if species.status %}
+              <p class="species-status"><strong>Status:</strong> {{ species.status }}</p>
+            {% endif %}
+            <p class="species-description">{{ species.description }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No endangered species information available currently.</p>
+  {% endif %}
+</section>
+
+<!-- Motivational Quotes Section -->
+<section class="motivational-quotes">
+  <div class="quotes-carousel container">
+    <button class="carousel-btn left" onclick="changeQuote(-1)">&#10094;</button>
+    <div class="quotes-wrapper">
+      <div class="quote-slide active">
+        <p class="quote">"Every sighting you report plays a vital role in wildlife conservation. Help us protect these magnificent creatures."</p>
+        <p class="author">– Aika Chan</p>
+      </div>
+      <div class="quote-slide">
+        <p class="quote">"Small actions by many people can change the world. Join our mission today."</p>
+        <p class="author">– Komodo Hub Team</p>
+      </div>
+      <div class="quote-slide">
+        <p class="quote">"Conservation is a state of harmony between humans and wildlife."</p>
+        <p class="author">– Aldo Leopold</p>
+      </div>
+    </div>
+    <button class="carousel-btn right" onclick="changeQuote(1)">&#10095;</button>
+  </div>
+</section>
+
+<!-- Fun & Games Section -->
+<section class="fun-games container">
+  <header class="section-header">
+    <h2>Fun & Games</h2>
+    <p>Challenge yourself while learning about wildlife conservation!</p>
+  </header>
+  <div class="game-teaser">
+    <p>Discover Indonesian endangered species through our interactive Word Search Game!</p>
+    <a href="{{ url_for('word_search_game') }}" class="cta-button">Play Now</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Motivational Quotes Carousel
+  let slideIndex = 0;
+  showSlides(slideIndex);
+
+  function changeQuote(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function showSlides(n) {
+    const slides = document.querySelectorAll('.quote-slide');
+    if (n >= slides.length) slideIndex = 0;
+    if (n < 0) slideIndex = slides.length - 1;
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[slideIndex].classList.add('active');
+  }
+
+  setInterval(() => { changeQuote(1); }, 7000);
+</script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,336 @@
+/* ===================== RESET & BASE ===================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.7;
+}
+
+/* ===================== CONTAINER ===================== */
+.container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===================== NAVIGATION ===================== */
+.navbar {
+  background-color: #1a3c1f;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+.nav-links li a {
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 5px 0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #ffd700;
+}
+
+/* ===================== NAV AUTH & DROPDOWN ===================== */
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Updated Sign Up / Sign In Buttons */
+.btn.round-btn {
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  color: #1a3c1f;
+  border: 2px solid #1a3c1f;
+}
+
+.btn.round-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.btn.round-btn.outline {
+  background-color: #fff;
+  border: 2px solid #1a3c1f;
+  color: #1a3c1f;
+}
+
+.btn.round-btn.outline:hover {
+  background-color: #f0f0f0;
+}
+
+/* User Dropdown */
+.user-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.user-btn {
+  background-color: #fff;
+  color: #1a3c1f;
+  border: 2px solid #1a3c1f;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.user-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: #fff;
+  min-width: 180px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.user-dropdown.active .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 12px 20px;
+  color: #333;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f8f8f8;
+}
+
+/* ===================== FLASH MESSAGES ===================== */
+.flash-messages {
+  margin: 20px auto;
+  max-width: 1200px;
+  padding: 10px 20px;
+}
+
+.flash {
+  padding: 12px 20px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.flash.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.flash.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+  background-color: #1a3c1f;
+  color: #fff;
+  padding: 4rem 0 2rem;
+  margin-top: auto;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-about h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #ffd700;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social a {
+  color: #fff;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.footer-social a:hover {
+  color: #ffd700;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Newsletter Subscribe */
+.footer-subscribe {
+  margin-top: 20px;
+  color: #fff;
+}
+
+.footer-subscribe h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.footer-subscribe p {
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.subscribe-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.subscribe-form input[type="email"] {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  color: #333;
+  font-size: 1rem;
+}
+
+.subscribe-form button {
+  padding: 8px 16px;
+  background-color: #ffd700;
+  color: #333;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.subscribe-form button:hover {
+  background-color: #ffce00;
+}
+
+/* ===================== RESPONSIVE DESIGN ===================== */
+@media (max-width: 992px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .user-dropdown {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 576px) {
+  .dropdown-menu {
+    min-width: 100%;
+  }
+  
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .footer-social {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Donate to Komodo Hub{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/payments.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="payment-container">
+  <h1>Donate to Komodo Hub</h1>
+  
+  <form method="POST" action="{{ url_for('process_donation') }}" class="donation-form">
+    <!-- Donation Frequency Toggle -->
+    <div class="donation-frequency">
+      <label class="frequency-label">
+        <input type="radio" name="frequency" value="single" required>
+        <span class="frequency-button">Single Donation</span>
+      </label>
+      <label class="frequency-label">
+        <input type="radio" name="frequency" value="monthly">
+        <span class="frequency-button">Monthly Donation</span>
+      </label>
+    </div>
+
+    <!-- Preset Donation Amount Options -->
+    <div class="preset-options">
+      <div class="preset-option">
+        <input type="radio" name="amount" id="amount60" value="60" required>
+        <label for="amount60" class="preset-label">
+          <span class="preset-amount">£60</span>
+          <span class="preset-description">Supports care for a rescued animal for a week</span>
+        </label>
+      </div>
+      <div class="preset-option">
+        <input type="radio" name="amount" id="amount100" value="100">
+        <label for="amount100" class="preset-label">
+          <span class="preset-amount">£100</span>
+          <span class="preset-description">Provides medical care for an endangered animal</span>
+        </label>
+      </div>
+      <div class="preset-option">
+        <input type="radio" name="amount" id="amount250" value="250">
+        <label for="amount250" class="preset-label">
+          <span class="preset-amount">£250</span>
+          <span class="preset-description">Helps fund habitat restoration for vulnerable wildlife</span>
+        </label>
+      </div>
+      <!-- Other Amount Option -->
+      <div class="preset-option other-option">
+        <input type="radio" name="amount" id="amountOther" value="other">
+        <label for="amountOther" class="preset-label">
+          <span class="preset-amount">Other</span>
+        </label>
+        <input type="number" class="other-input" name="custom_amount" placeholder="Enter amount" step="0.01" disabled>
+      </div>
+    </div>
+
+    <button type="submit" class="donate-button">Donate Now</button>
+  </form>
+
+  <p class="top-rated">Top Rated Charity: Komodo Hub Animal Conservation</p>
+</div>
+
+<script>
+  // Toggle custom donation input when "Other" is selected
+  document.querySelectorAll('input[name="amount"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      const otherInput = document.querySelector('.other-input');
+      if (this.id === 'amountOther') {
+        otherInput.disabled = false;
+        otherInput.required = true;
+        otherInput.focus();
+      } else {
+        otherInput.disabled = true;
+        otherInput.required = false;
+        otherInput.value = '';
+      }
+    });
+  });
+</script>
+{% endblock %}

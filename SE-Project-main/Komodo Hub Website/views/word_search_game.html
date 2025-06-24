@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Word Search Game{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="game-section">
+    <h1>🧩 Word Search Game</h1>
+    <p>Find the names of Indonesian endangered species by clicking and dragging across the letters!</p>
+
+    <div id="game-container">
+      <!-- Word Grid -->
+      <div id="word-grid"></div>
+
+      <!-- Word List & Leaderboard -->
+      <div id="game-info">
+        <div id="word-list">
+          <h3>🐾 Words to Find</h3>
+          <ul id="words"></ul>
+        </div>
+
+        <div id="leaderboard">
+          <h3>🏅 Leaderboard</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>User</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in leaderboard %}
+              <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.points }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Game Button & Message -->
+    <button id="new-game">Start New Game</button>
+    <p id="message"></p>
+
+  </div>
+</div>
+
+<!-- Link to your JS file -->
+<script src="{{ url_for('static', filename='js/game.js') }}"></script>
+{% endblock %}

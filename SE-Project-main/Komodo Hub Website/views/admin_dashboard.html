@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard-container">
+  <header class="dashboard-header">
+    <h1>Admin Dashboard</h1>
+  </header>
+
+  <!-- System Statistics Section -->
+  <section class="admin-stats">
+    <div class="stat-box">
+      <h2>{{ stats['total_users'] }}</h2>
+      <p>Total Users</p>
+    </div>
+    <div class="stat-box">
+      <h2>{{ stats['total_sightings'] }}</h2>
+      <p>Total Sightings</p>
+    </div>
+    <div class="stat-box">
+      <h2>{{ stats['total_content'] }}</h2>
+      <p>Total Content Submissions</p>
+    </div>
+    <div class="stat-box">
+      <h2>{{ stats['total_payments'] }}</h2>
+      <p>Total Donations</p>
+    </div>
+  </section>
+
+  <!-- Manage Users Section -->
+  <section class="admin-section">
+    <h2>Manage Users</h2>
+    {% if users %}
+      <div class="table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr>
+              <td>{{ user['id'] }}</td>
+              <td>{{ user['username'] }}</td>
+              <td>{{ user['email'] }}</td>
+              <td>
+                <form method="POST" class="inline-form">
+                  <input type="hidden" name="action" value="update_user_role">
+                  <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                  <select name="role" onchange="this.form.submit()">
+                    <option value="admin" {% if user['role_name'] == 'admin' %}selected{% endif %}>Admin</option>
+                    <option value="teacher" {% if user['role_name'] == 'teacher' %}selected{% endif %}>Teacher</option>
+                    <option value="student" {% if user['role_name'] == 'student' %}selected{% endif %}>Student</option>
+                    <option value="community" {% if user['role_name'] == 'community' %}selected{% endif %}>Community</option>
+                  </select>
+                </form>
+              </td>
+              <td>
+                <form method="POST" class="inline-form" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                  <input type="hidden" name="action" value="delete_user">
+                  <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                  <button type="submit" class="action-btn delete-btn">Delete</button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p>No users found.</p>
+    {% endif %}
+  </section>
+
+  <!-- Moderate Content Submissions Section -->
+  <section class="admin-section">
+    <h2>Moderate Content Submissions</h2>
+    {% if contents %}
+      <div class="table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Public</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for content in contents %}
+            <tr>
+              <td>{{ content['id'] }}</td>
+              <td>{{ content['title'] }}</td>
+              <td>{{ content['username'] }}</td>
+              <td>
+                <form method="POST" class="inline-form">
+                  <input type="hidden" name="action" value="update_content">
+                  <input type="hidden" name="content_id" value="{{ content['id'] }}">
+                  <input type="checkbox" name="is_public" {% if content['is_public'] %}checked{% endif %} onchange="this.form.submit()">
+                </form>
+              </td>
+              <td>
+                <form method="POST" class="inline-form" onsubmit="return confirm('Are you sure you want to delete this content?');">
+                  <input type="hidden" name="action" value="delete_content">
+                  <input type="hidden" name="content_id" value="{{ content['id'] }}">
+                  <button type="submit" class="action-btn delete-btn">Delete</button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p>No content submissions found.</p>
+    {% endif %}
+  </section>
+
+  <!-- Manage Sightings Section -->
+  <section class="admin-section">
+    <h2>Manage Sightings</h2>
+    {% if sightings %}
+      <div class="table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Species</th>
+              <th>Location</th>
+              <th>Uploader</th>
+              <th>Timestamp</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for sighting in sightings %}
+            <tr>
+              <td>{{ sighting['id'] }}</td>
+              <td>{{ sighting['species'] }}</td>
+              <td>{{ sighting['location'] }}</td>
+              <td>{{ sighting['uploader'] }}</td>
+              <td>{{ sighting['timestamp'] }}</td>
+              <td>
+                <form method="POST" class="inline-form" onsubmit="return confirm('Are you sure you want to delete this sighting?');">
+                  <input type="hidden" name="action" value="delete_sighting">
+                  <input type="hidden" name="sighting_id" value="{{ sighting['id'] }}">
+                  <button type="submit" class="action-btn delete-btn">Delete</button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p>No sightings found.</p>
+    {% endif %}
+  </section>
+
+  <!-- Add Announcement Section -->
+  <section class="admin-section">
+    <h2>Add Announcement</h2>
+    <form method="POST" class="admin-form">
+      <input type="hidden" name="action" value="add_announcement">
+      <label for="announcement">Announcement:</label>
+      <textarea id="announcement" name="announcement" required></textarea>
+      <button type="submit" class="action-btn">Send Announcement</button>
+    </form>
+  </section>
+</div>
+{% endblock %}
